@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Form</title>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+<script src="js/login.js"></script>
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<h2>Login Form</h2>
+
+<form action="/action_page.php">
+
+	
+	<form id="jsonform">
+	<fieldset>	
+		  <div class="container">
+		    <label for="uname"><b>Username</b></label>
+		    <input type="text" id="username" placeholder="Enter Username"  required>
+		
+		    <label for="psw"><b>Password</b></label>
+		    <input type="password" id="password" placeholder="Enter Password" required>
+		        
+		    <button  type="button" value="submit"  id="login">Login</button>
+		  </div>
+  </fieldset>
+	</form> 
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn"  id="goBack">Cancel</button>
+    
+  </div>
+</form>
+
+</body>
+</html>
