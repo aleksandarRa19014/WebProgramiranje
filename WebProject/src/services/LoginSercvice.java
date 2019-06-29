@@ -22,9 +22,26 @@ import javax.ws.rs.core.PathSegment;
 import javax.ws.rs.core.Response;
 
 import beans.Category;
+import beans.LogInDto;
+import beans.User;
+import controllers.UserController;
 
 
-@Path("/demo")
+@Path("/userLog")
 public class LoginSercvice {
+	
+	private UserController userCtrl = new UserController();
+	
+	@POST
+	@Path("/logIn")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public LogInDto logIn(LogInDto logInDto) {
+	
+		if(userCtrl.userCheck(logInDto))
+			return logInDto;
+		else
+			return null;
+	}
 
 }

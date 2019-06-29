@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class User {
 	
+	
 	private String userName;
 	private String password;
 	private String name;
@@ -12,14 +13,14 @@ public class User {
 	private String contactPh;
 	private String town;
 	private String email;
-	private java.util.Date regDate;
+	private String regDate;
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String userName, String password, String name, String lastName, Role role, String email, Date regDate) {
+	public User(String userName, String password, String name, String lastName, Role role, String email, String regDate) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -94,11 +95,19 @@ public class User {
 		this.email = email;
 	}
 
-	public java.util.Date getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(java.util.Date regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
+	
+	@Override
+	public String toString() {
+		return userName + "," + password + "," + name + "," + lastName
+				+ "," + role + "," + contactPh + "," + town + "," + email + ","
+				+ regDate;
+	}
+
 }

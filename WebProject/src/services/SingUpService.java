@@ -2,6 +2,8 @@ package services;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -22,19 +24,17 @@ import javax.ws.rs.core.PathSegment;
 import javax.ws.rs.core.Response;
 
 import beans.Category;
+import beans.Role;
 import beans.User;
+import controllers.UserController;
 
 import javax.ws.rs.Path;
 
 @Path("/user")
 public class SingUpService {
-	@GET
-	@Path("/test")
-	public String test() {
-		return "REST is working";
-	}
 	
-	
+	private UserController listUserCtrl = new UserController();
+
 	
 	@POST
 	@Path("/singUp")
@@ -48,16 +48,23 @@ public class SingUpService {
 		newUser.setLastName(u.getLastName());
 		newUser.setName(u.getName());
 		newUser.setPassword(u.getPassword());
-		newUser.setRegDate(u.getRegDate());
-		newUser.setRole(u.getRole());
+		
+		Date date = new Date(System.currentTimeMillis());  
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); 
+		
+		newUser.setRegDate(formatter.format(date));
+		
+		newUser.setRole(Role.buyer);
 		newUser.setTown(u.getTown());
 		newUser.setUserName(u.getUserName());
 		
-		System.out.println(newUser.getName());
+		if(listUserCtrl.saveUser(newUser)){
+			return newUser;
+		}else{
+			return null;
+		}
+
 		
-		
-		
-		return u;
 	}
 	
 	
