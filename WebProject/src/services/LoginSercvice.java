@@ -36,12 +36,11 @@ public class LoginSercvice {
 	@Path("/logIn")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public LogInDto logIn(LogInDto logInDto) {
-	
-		if(userCtrl.userCheck(logInDto))
-			return logInDto;
-		else
-			return null;
+	public User logIn(LogInDto logInDto) {
+		User user = new User();
+		user =  userCtrl.userCheck(logInDto);
+		
+		return user;
 	}
 
 }

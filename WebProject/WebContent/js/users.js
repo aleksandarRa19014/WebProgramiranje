@@ -5,24 +5,25 @@ $(document).ready(function(){
 			type:"GET",
 			dataType:"json",			
 			success: function (data) {
-				for (i = 0; i < data.length; i++) { 
-					
-					$('tbody tr:last').after('<tr>'+
-											'<td id="userName'+ i+'" >'+data[i].userName+'</td>'+
-											'<td >'+data[i].name+'</td>'+
-											'<td>'+data[i].lastName+'</td>'+
-											'<td>'+data[i].email+'</td>'
-											+'<td><select id="combobox'+i+'" value=' + data[i].role +'>'
-											   +'<option selected hidden>Choose here</option>'	
-											   +'<option value="buyer">Buyer</option>'
-											   +'<option value="admin">Admin</option>'
-											   +'<option value="seller">Seller</option>'
-											   +'</select> </td>'
-											   +'<td> <button type="button" class="btn btn-primary btn-md" id="'+ i+'"' + '>Save change</button> </td></tr>'
-											   
-											);
+				if(data != null){
+						for (i = 0; i < data.length; i++) { 
+							
+							$('tbody tr:last').after('<tr>'+
+													'<td id="userName'+ i+'" >'+data[i].userName+'</td>'+
+													'<td >'+data[i].name+'</td>'+
+													'<td>'+data[i].lastName+'</td>'+
+													'<td>'+data[i].email+'</td>'
+													+'<td><select id="combobox'+i+'" value=' + data[i].role +'>'
+													   +'<option selected hidden>Choose here</option>'	
+													   +'<option value="buyer">Buyer</option>'
+													   +'<option value="admin">Admin</option>'
+													   +'<option value="seller">Seller</option>'
+													   +'</select> </td>'
+													   +'<td> <button type="button" class="btn btn-primary btn-md" id="'+ i+'"' + '>Save change</button> </td></tr>'
+													   
+													);
+						}
 				}
-				
 				
 				
 			}

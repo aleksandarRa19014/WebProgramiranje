@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -24,13 +26,22 @@ public class UserController {
 
 		BufferedWriter bw = null;
         FileWriter fw = null;
-
         try {
 
             File file = new File("Users.txt");
             fw = new FileWriter(file,true);
             bw = new BufferedWriter(fw);
- 
+            
+            String username = "aleksandar995";
+            if(file.length() == 0){
+            	Date date = new Date(System.currentTimeMillis());  
+        		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); 
+            	
+        		User admin = new User("aleksandar995","12345","Aleksandar","Radovanovic",Role.admin,"aleksandarradovanovic95@gmail.com",formatter.format(date));
+            	
+            	bw.write(admin.toString());
+                bw.write("\n");
+    	    }
             
             if(this.existUser(u, file.getAbsolutePath())){
             	System.out.println("Postoji korisnik sa tim usernejmom!");
@@ -38,8 +49,10 @@ public class UserController {
             }
             else{
             	System.out.println("Uspesno ste dodali korisnika!");
-            	bw.write(u.toString());
-                bw.write("\n");
+            	if(!u.getUserName().equals(username)){
+            		bw.write(u.toString());
+            		bw.write("\n");
+            	}
             }
 
         } catch (IOException e) {
@@ -87,11 +100,8 @@ public class UserController {
 	}
 	
 	
-	public boolean userCheck(LogInDto log)
+	public User userCheck(LogInDto log)
 	{
-		
-		HashMap<String, String> user = new HashMap<String, String>();
-		
 		Path currentRelativePath = Paths.get("");
 	    String s = currentRelativePath.toAbsolutePath().toString();
 	    File file = new File(s+ "/" + "Users.txt");
@@ -102,7 +112,7 @@ public class UserController {
 	    String passwordToken = "";
 	      
 	    if(file.length() == 0){
-	    	return false;
+	    	return null;
 	    }
 	    else{ 
 	    	
@@ -110,35 +120,42 @@ public class UserController {
 				sc = new Scanner(file);
 				while (sc.hasNextLine()) {
 					
-					
+					User user = new User();
 					StringTokenizer st = new StringTokenizer(sc.nextLine(), ",");
-					
 					userNameToken = st.nextToken();
 					passwordToken = st.nextToken();
+					if(log.getUserName().equals(userNameToken) && log.getPassword().equals(passwordToken)){
+						user.setUserName(userNameToken);
+						user.setPassword(passwordToken);
+						user.setName(st.nextToken());
+						user.setLastName(st.nextToken());
+						switch(st.nextToken()) {
+						  case "buyer":
+							  user.setRole(Role.buyer);
+						    break;
+						  case "admin":
+							  user.setRole(Role.admin);
+						    break;
+						  case "seller":
+							  user.setRole(Role.seller);
+							    break;
+						}
+						user.setContactPh(st.nextToken());
+						user.setTown(st.nextToken());
+						user.setEmail(st.nextToken());
+						user.setRegDate(st.nextToken());
+						
+						return user;
+					}
 					
-					user.put(userNameToken, passwordToken);
-					
-					System.out.println(userNameToken + "    "+ passwordToken);				    
+									    
 				}
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
 	    }
-	    //ako sadrzi kljuc pogladaj da li je vrednost ista
-	    if(user.containsKey(log.getUserName()) ){
-		    if(user.get(log.getUserName()).equals(log.getPassword()) ){
-		    	System.out.println("3333333333");
-	    		return true;
-		    }else{
-		    	System.out.println("4444444444444");
-	    		return false;
-		    }
-	    	
-	    }else{
-	    	System.out.println("5555555555");
-	    	return false;
-	    }  
+	    return null;
 	}
 	
 	
@@ -282,7 +299,6 @@ public class UserController {
 			}
 		   
 		   
-		    //file.delete();
 		   for(User user :users){
 		    	saveUser(user);
 		    }
