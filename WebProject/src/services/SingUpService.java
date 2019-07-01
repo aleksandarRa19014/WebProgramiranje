@@ -33,7 +33,7 @@ import javax.ws.rs.Path;
 @Path("/user")
 public class SingUpService {
 	
-	private UserController listUserCtrl = new UserController();
+	private UserController listUserCtrl;
 
 	
 	@POST
@@ -41,7 +41,7 @@ public class SingUpService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public User singUp(User u) {
-		
+		listUserCtrl = new UserController();
 		User newUser = new User();
 		newUser.setContactPh(u.getContactPh());
 		newUser.setEmail(u.getEmail());

@@ -1,10 +1,4 @@
 $(document).ready(function(){
-	  $("#goBack").click(function(){
-		  window.history.back();
-	  }); 
-});
-
-$(document).ready(function(){
 	  $("#login").click(function(){
 		 
 		  console.log($('#username').val());
@@ -31,6 +25,10 @@ $(document).ready(function(){
 				
 			});
 			
+	  });
+	  
+	  $("#goBack").click(function(){
+		  window.history.back();
 	  });
 	  
 });
