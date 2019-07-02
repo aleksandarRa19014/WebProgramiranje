@@ -1,0 +1,58 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" href="css/index.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">        
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  		
+  		<script src="js/admin.js"></script>
+  		
+    </head>
+    <body>
+         <ul class="topnav">
+			  <li><a href="#home" class="active">Home</a></li>
+			  <li><a href="users.html" class="hover" >Users</a></li>
+			  <li><a href="">Category</a></li>
+			  <li class="right"><a href="index.html">Log out</a></li>
+		</ul>
+		
+		
+		<button id="create">Create category</button>
+		
+		
+		<div id="addCateg" style="display: none">
+			<label for="name"><b>Name category </b></label>
+		    <input type="text" placeholder="Enter name" id="addName" required>
+		    
+		    <label for="description"><b>Description</b></label>
+		    <input type="text" placeholder="Enter description" id="addDescription" required>
+		
+			<button id="add">Add category</button>
+		</div>
+		
+		<div id=tableCateg>
+				<table class="table table-striped">
+					<tbody>
+					</tbody>
+		 		</table>
+		</div>
+		
+		<div id="editCateg" style="display: none">
+			<label for="name"><b>Name category </b></label>
+		    <input type="text" id="editName" required>
+		    
+		    <label for="description"><b>Description</b></label>
+		    <input type="text" id="editDescription" required>
+		
+			<button id="edtBtn">Edit category</button>
+			<button id="cancleBtn">Cancle</button>
+		</div>		
+		
+		
+		
+         
+    </body>
+    
+</html>
+

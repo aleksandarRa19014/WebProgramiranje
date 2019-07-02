@@ -75,7 +75,7 @@ public class UserController {
 	public boolean existUser(User u,String path){
 		
 		File file = new File(path); 
-	    Scanner sc;
+	    Scanner sc = null;
 	    
 	    String nextToken = "";
 	    
@@ -89,6 +89,7 @@ public class UserController {
 				nextToken = st.nextToken();
 
 			    if(u.getUserName().equals(nextToken) )
+			    	sc.close();
 			    	return true;
 			    
 			}
@@ -96,6 +97,7 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+		sc.close();
 		return false;
 	}
 	
@@ -106,7 +108,7 @@ public class UserController {
 	    String s = currentRelativePath.toAbsolutePath().toString();
 	    File file = new File(s+ "/" + "Users.txt");
 	    
-	    Scanner sc;
+	    Scanner sc = null;
 	    
 	    String userNameToken = "";
 	    String passwordToken = "";
@@ -144,7 +146,7 @@ public class UserController {
 						user.setTown(st.nextToken());
 						user.setEmail(st.nextToken());
 						user.setRegDate(st.nextToken());
-						
+						sc.close();
 						return user;
 					}
 					
@@ -155,6 +157,7 @@ public class UserController {
 				e.printStackTrace();
 			} 
 	    }
+	    sc.close();
 	    return null;
 	}
 	
