@@ -10,8 +10,8 @@ public class Ad {
 	private int like;
 	private int dislike;
 	private BufferedImage image;
-	private Date updateDate;
-	private Date dateExpiration;
+	private String updateDate;
+	private String dateExpiration;
 	private ArrayList<Review> listRev;
 	private String city;
 	
@@ -21,7 +21,7 @@ public class Ad {
 	}
 
 	public Ad(String name, String price, String description, int like, int dislike, BufferedImage image,
-			Date updateDate, Date dateExpiration, ArrayList<Review> listRev, String city) {
+			String updateDate, String dateExpiration, ArrayList<Review> listRev, String city) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -83,19 +83,19 @@ public class Ad {
 		this.image = image;
 	}
 
-	public Date getUpdateDate() {
+	public String getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 
-	public Date getDateExpiration() {
+	public String getDateExpiration() {
 		return dateExpiration;
 	}
 
-	public void setDateExpiration(Date dateExpiration) {
+	public void setDateExpiration(String dateExpiration) {
 		this.dateExpiration = dateExpiration;
 	}
 
@@ -114,9 +114,6 @@ public class Ad {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
-	
-	
-	
+
 	
 }

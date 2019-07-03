@@ -88,9 +88,10 @@ public class UserController {
 				
 				nextToken = st.nextToken();
 
-			    if(u.getUserName().equals(nextToken) )
+			    if(u.getUserName().equals(nextToken) ){
 			    	sc.close();
 			    	return true;
+			    }
 			    
 			}
 		} catch (FileNotFoundException e) {
